@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;	
+}
+
+.grid_g_all{
+    display: grid;
+    grid-template-rows: 7em auto 3em;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "navbarg"
+        "main"
+        "footer_all";
+}
+
+.grid_g{
+    grid-area: main;
+    background-color:var(--bright-yellow-crayola);
+    color:black;
+
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    grid-template-areas: 
+        "photo1 text1"
+        "text2  photo2"
+        "photo3 text3";
+
+}
+
+.grid_g > img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.navbar_g{
+    grid-area: navbarg;
+    color: var(--bright-yellow-crayola);
+    background-color: var(--black-chocolate);
+    position: relative;
+}
+
+.navbar_g ul {
+    display: flex;
+}
+
+.navbar_g a {
+    padding: 1.3em;
+    margin: 0 0.5em;
+    transition: 1s;
+    font-size: var(--fs-h3);
+}
+
+.navbar_g a:hover{
+    color: white;
+}
+
+/* popis fotek*/
+
+.text_1{
+    grid-area: text1;
+}
+
+.text_2{
+    grid-area: text2;
+}
+
+.text_3{
+    grid-area: text3;
+}
+
+.text_card{
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.text_card a{
+    font-weight: 700;
+}
+.text_card ul{
+    list-style-type: disc;
+    text-align: justify;
+    justify-content: center;
+}
+
+.text{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text ul{
+    
+    padding: 1.2rem;
+}
+
+/* photo grid place declarations */
+.photo1{
+    grid-area: photo1;
+}
+
+.photo2{
+    grid-area: photo2;
+
+}
+.photo3{
+    grid-area: photo3;
+
+}
+
+/* footer */
+.footer_all_g{
+    grid-area: footer_all;
+    background-color: var(--falu-red);
+    text-align: center;
+    height: 100%;
+}
+
+/* responsive */
+@media screen and (max-width: 1024px) {
+    .grid_g{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "photo1"
+            "text1"
+            "photo2"
+            "text2"
+            "photo3"
+            "text3";
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .text_card{
+    font-size: 0.8rem;
+}
+}   
