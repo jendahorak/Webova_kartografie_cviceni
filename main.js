@@ -83,15 +83,15 @@ window.onload = function () {
   });
 
   // vrstva okresu
-  const obec_decin = 'https://raw.githubusercontent.com/jendahorak/personalgeoserver/main/obec_polygon.geojson';
-
+  //   const obec_decin = 'https://raw.githubusercontent.com/jendahorak/personalgeoserver/main/obec_polygon.geojson';
+  const obec_decin_maptiler = 'https://api.maptiler.com/data/545cc34a-ae59-4f56-a869-bbce0f28554e/features.json?key=AKmbSShpBnydQXxNUVbK';
   function polygon_style(feature) {
     return {
       color: '#19180aff',
     };
   }
 
-  fetch(obec_decin)
+  fetch(obec_decin_maptiler)
     .then((response) => response.json())
     .then((data) => {
       const OBEC_DECIN = L.geoJSON(data, {
