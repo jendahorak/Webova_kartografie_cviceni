@@ -130,9 +130,7 @@ window.onload = function () {
           layer.feature.properties.picture +
           '" style="width:200px;height:auto;">' +
           '<br>' +
-          '<a href=' +
-          layer.feature.properties.zo_link +
-          '>Více informací</a>';
+          '<a href=';
         return POPUPCONTENT;
       }).addTo(main_map);
 
