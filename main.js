@@ -85,33 +85,33 @@ window.onload = function () {
   // vrstva okresu
   //   const obec_decin = 'https://raw.githubusercontent.com/jendahorak/personalgeoserver/main/obec_polygon.geojson';
   const obec_decin_maptiler = 'https://api.maptiler.com/data/545cc34a-ae59-4f56-a869-bbce0f28554e/features.json?key=AKmbSShpBnydQXxNUVbK';
-  function polygon_style(feature) {
-    return {
-      color: '#19180aff',
-    };
-  }
 
-  fetch(obec_decin_maptiler)
-    .then((response) => response.json())
-    .then((data) => {
+  async function fetchObecDecin() {
+    try {
+      const response = await fetch(obec_decin_maptiler);
+      const data = await response.json();
+
       const OBEC_DECIN = L.geoJSON(data, {
-        style: polygon_style,
+        style: { color: '#19180aff' },
       });
 
       OBEC_DECIN.bindPopup('<p>Okres Děčín</p>');
-
       OBEC_DECIN.addTo(main_map);
-
       LAYERCTRL.addOverlay(OBEC_DECIN, 'okres Děčín');
       main_map.fitBounds(OBEC_DECIN.getBounds());
-    });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
 
   // vrstva zaniklych mist
   const obce_url = 'https://raw.githubusercontent.com/jendahorak/personalgeoserver/main/zo_w_links.geojson';
 
-  fetch(obce_url)
-    .then((response) => response.json())
-    .then((data) => {
+  async function fetchZanikleObce() {
+    try {
+      const response = await fetch(obce_url);
+      const data = await response.json();
+
       const ZANIKLE_OBCE = L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
           return L.marker(latlng, { icon: zoIcon });
@@ -135,6 +135,13 @@ window.onload = function () {
           '>Více informací</a>';
         return POPUPCONTENT;
       }).addTo(main_map);
+
       LAYERCTRL.addOverlay(ZANIKLE_OBCE, 'zaniklá místa');
-    });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  fetchObecDecin();
+  fetchZanikleObce();
 };
